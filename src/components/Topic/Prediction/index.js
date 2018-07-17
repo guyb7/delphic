@@ -29,12 +29,42 @@ const styles = theme => {
   }
 }
 
-class Prediction extends React.PureComponent {
+class Prediction extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      status: props.status,
+      answer: props.answer,
+      isSubmitting: false
+    }
+  }
+
+  onChange = value => {
+    console.log('Change', value)
+    this.setState({
+      answer: value
+    })
+  }
+
+  onSubmit = e => {
+    e.preventDefault()
+    this.setState({
+      isSubmitting: true
+    }, () => {
+      console.log('Submit', this.props.id, this.state.answer)
+      setTimeout(() => {
+        this.setState({
+          isSubmitting: false,
+          status: 'answered'
+        })
+      }, 800)
+    })
+  }
+
   render () {
     const {
       classes,
       title,
-      status,
       createdAt,
       lockTime,
       answerTime,
@@ -42,9 +72,13 @@ class Prediction extends React.PureComponent {
       result,
       question,
       questionFormat,
-      options,
-      answer
+      options
     } = this.props
+    const {
+      answer,
+      status,
+      isSubmitting
+    } = this.state
     const statusProps = {
       status,
       createdAt,
@@ -68,6 +102,9 @@ class Prediction extends React.PureComponent {
             options={options}
             answer={answer}
             disabled={status !== 'open'}
+            onChange={this.onChange}
+            onSubmit={this.onSubmit}
+            isSubmitting={isSubmitting}
           />
         </ExpansionPanelDetails>
       </ExpansionPanel>
