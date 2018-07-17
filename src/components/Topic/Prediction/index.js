@@ -24,7 +24,17 @@ const styles = theme => {
     },
     question: {
       display: 'flex',
-      flexDirection: 'column'
+      flexDirection: 'column',
+      flexGrow: 2
+    },
+    results: {
+      display: 'flex',
+      flexDirection: 'column',
+      flexGrow: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      color: theme.palette.grey[400],
+      backgroundColor: theme.palette.grey[100]
     }
   }
 }
@@ -97,6 +107,7 @@ class Prediction extends React.Component {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Question
+            className={classes.question}
             question={question}
             questionFormat={questionFormat}
             options={options}
@@ -106,6 +117,13 @@ class Prediction extends React.Component {
             onSubmit={this.onSubmit}
             isSubmitting={isSubmitting}
           />
+          {
+            result !== null && (
+              <div className={classes.results}>
+                Results
+              </div>
+            )
+          }
         </ExpansionPanelDetails>
       </ExpansionPanel>
     )
