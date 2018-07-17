@@ -2,10 +2,8 @@ import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
 import Typography from '@material-ui/core/Typography'
-import Radio from '@material-ui/core/Radio'
-import RadioGroup from '@material-ui/core/RadioGroup'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import FormControl from '@material-ui/core/FormControl'
+
+import Radio from './Radio'
 
 const styles = theme => {
   return {
@@ -19,31 +17,20 @@ const styles = theme => {
 class Question extends React.Component {
   render () {
     const { classes, question, questionFormat, options, answer, disabled } = this.props
+    let QuestionComponent
+    if (questionFormat === 'radio') {
+      QuestionComponent = Radio
+    } else {
+      QuestionComponent = <div />
+    }
     return (
       <div className={classes.root}>
         <Typography>{question}</Typography>
-        {
-          questionFormat === 'radio' &&
-          <FormControl component='fieldset' className={classes.formControl}>
-            <RadioGroup
-              className={classes.group}
-              value={answer}
-              onChange={() => {}}
-            >
-              {
-                options.map(o =>
-                  <FormControlLabel
-                    key={o.value}
-                    value={o.value}
-                    control={<Radio />}
-                    label={o.label}
-                    disabled={disabled}
-                  />
-                )
-              }
-            </RadioGroup>
-          </FormControl>
-        }
+        <QuestionComponent
+          options={options}
+          answer={answer}
+          disabled={disabled}
+        />
       </div>
     )
   }
