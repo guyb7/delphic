@@ -1,7 +1,7 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 
-import Prediction from './Prediction'
+import Prediction from './Prediction/'
 
 const styles = theme => {
   return {

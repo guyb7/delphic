@@ -5,13 +5,10 @@ import Typography from '@material-ui/core/Typography'
 import ExpansionPanel from '@material-ui/core/ExpansionPanel'
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary'
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails'
-import Radio from '@material-ui/core/Radio'
-import RadioGroup from '@material-ui/core/RadioGroup'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import FormControl from '@material-ui/core/FormControl'
 import ChevronDownIcon from 'mdi-material-ui/ChevronDown'
 
 import StatusCounter from './StatusCounter'
+import Question from './Question/'
 
 const styles = theme => {
   return {
@@ -65,25 +62,13 @@ class Prediction extends React.PureComponent {
           </div>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <div className={classes.question}>
-            <Typography>{question}</Typography>
-            {
-              questionFormat === 'radio' &&
-              <FormControl component='fieldset' required className={classes.formControl}>
-                <RadioGroup
-                  className={classes.group}
-                  value={answer}
-                  onChange={() => {}}
-                >
-                  {
-                    options.map(o =>
-                      <FormControlLabel key={o.value} value={o.value} control={<Radio />} label={o.label} />
-                    )
-                  }
-                </RadioGroup>
-              </FormControl>
-            }
-          </div>
+          <Question
+            question={question}
+            questionFormat={questionFormat}
+            options={options}
+            answer={answer}
+            disabled={status !== 'open'}
+          />
         </ExpansionPanelDetails>
       </ExpansionPanel>
     )
