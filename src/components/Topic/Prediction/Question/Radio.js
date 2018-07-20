@@ -8,6 +8,22 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 const styles = theme => {
   return {
     root: {
+      display: 'flex'
+    },
+    correct: {
+      '& *': {
+        color: theme.palette.green[500] + ' !important'
+      }
+    },
+    label: {
+      flexGrow: 1
+    },
+    optionWithStats: {
+      display: 'flex',
+      justifyContent: 'space-between'
+    },
+    stats: {
+      fontSize: 12
     }
   }
 }
@@ -17,25 +33,53 @@ class Question extends React.PureComponent {
     const {
       classes,
       options,
-      answer,
+      userAnswer,
+      correctAnswer,
       disabled,
+      stats,
       onChange
     } = this.props
+    let totalAnswers = 0
+    if (stats) {
+      for (let k in stats) {
+        totalAnswers += stats[k]
+      }
+    }
     return (
       <RadioGroup
         className={classes.root}
-        value={answer}
+        value={userAnswer}
         onChange={e => onChange(e.target.value)}
       >
         {
-          options.map(o =>
-            <FormControlLabel
+          options.map(o => {
+            const isCorrect = correctAnswer && o.value === correctAnswer
+            let label = o.label
+            if (stats) {
+              const answers = stats[o.value]
+              const answersPercent = totalAnswers === 0 ? 0 : Math.round(answers / totalAnswers * 100)
+              label = <div className={classes.optionWithStats}>
+                <span>{label}</span>
+                <span className={classes.stats}>
+                  {answers} users, {answersPercent}%
+                </span>
+              </div>
+            }
+            return <FormControlLabel
               key={o.value}
+              className={classes.root}
+              classes={{
+                root: classes.root + ' ' + (isCorrect ? classes.correct : ''),
+                label: classes.label
+              }}
               value={o.value}
-              control={<Radio />}
-              label={o.label}
+              control={
+                <Radio />
+              }
+              label={label}
               disabled={disabled}
             />
+          }
           )
         }
       </RadioGroup>

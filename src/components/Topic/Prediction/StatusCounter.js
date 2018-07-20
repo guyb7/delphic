@@ -43,13 +43,13 @@ class StatusCounter extends React.PureComponent {
   }
 
   statusResolved () {
-    const { classes, result } = this.props
+    const { classes, isCorrect } = this.props
     let className = 'unknown'
     let text = 'Resolves soon'
-    if (result === 'correct') {
+    if (isCorrect === true) {
       className = classes.correct
       text = 'Correct'
-    } else if (result === 'incorrect') {
+    } else if (isCorrect === false) {
       className = classes.incorrect
       text = 'Incorrect'
     }
@@ -76,9 +76,9 @@ class StatusCounter extends React.PureComponent {
       status,
       lockTime,
       resolveTime,
-      result
+      isCorrect
     } = this.props
-    if (result !== null) {
+    if (isCorrect !== null) {
       return this.statusResolved()
     } else if (status === 'open') {
       return this.countDown(lockTime, 'Time to answer', classes.answered)

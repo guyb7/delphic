@@ -9,6 +9,7 @@ import ChevronDownIcon from 'mdi-material-ui/ChevronDown'
 
 import StatusCounter from './StatusCounter'
 import Question from './Question/'
+import Results from './Results'
 
 const styles = theme => {
   return {
@@ -44,7 +45,7 @@ class Prediction extends React.Component {
     super(props)
     this.state = {
       status: props.status,
-      answer: props.answer,
+      userAnswer: props.userAnswer,
       isSubmitting: false
     }
   }
@@ -52,7 +53,7 @@ class Prediction extends React.Component {
   onChange = value => {
     console.log('Change', value)
     this.setState({
-      answer: value
+      userAnswer: value
     })
   }
 
@@ -61,7 +62,7 @@ class Prediction extends React.Component {
     this.setState({
       isSubmitting: true
     }, () => {
-      console.log('Submit', this.props.id, this.state.answer)
+      console.log('Submit', this.props.id, this.state.userAnswer)
       setTimeout(() => {
         this.setState({
           isSubmitting: false,
@@ -79,13 +80,14 @@ class Prediction extends React.Component {
       lockTime,
       answerTime,
       resolveTime,
-      result,
       question,
       questionFormat,
-      options
+      options,
+      correctAnswer,
+      stats
     } = this.props
     const {
-      answer,
+      userAnswer,
       status,
       isSubmitting
     } = this.state
@@ -95,7 +97,7 @@ class Prediction extends React.Component {
       lockTime,
       answerTime,
       resolveTime,
-      result
+      isCorrect: correctAnswer ? userAnswer === correctAnswer : null
     }
     return (
       <ExpansionPanel>
@@ -111,18 +113,16 @@ class Prediction extends React.Component {
             question={question}
             questionFormat={questionFormat}
             options={options}
-            answer={answer}
+            userAnswer={userAnswer}
+            correctAnswer={correctAnswer}
+            stats={stats}
             disabled={status !== 'open'}
             onChange={this.onChange}
             onSubmit={this.onSubmit}
             isSubmitting={isSubmitting}
           />
           {
-            result !== null && (
-              <div className={classes.results}>
-                Results
-              </div>
-            )
+            stats && <Results />
           }
         </ExpansionPanelDetails>
       </ExpansionPanel>

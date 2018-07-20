@@ -29,8 +29,10 @@ class Question extends React.PureComponent {
       question,
       questionFormat,
       options,
-      answer,
+      userAnswer,
+      correctAnswer,
       disabled,
+      stats,
       onChange,
       onSubmit,
       isSubmitting
@@ -45,11 +47,13 @@ class Question extends React.PureComponent {
       <div className={`${className} ${classes.root}`}>
         <Typography>{question}</Typography>
         <form className={classes.form} onSubmit={onSubmit}>
-          <FormControl component='fieldset'>
+          <FormControl>
             <QuestionComponent
               options={options}
-              answer={answer}
+              userAnswer={userAnswer}
+              correctAnswer={correctAnswer}
               disabled={disabled || isSubmitting}
+              stats={stats}
               onChange={onChange}
             />
           </FormControl>
@@ -60,7 +64,7 @@ class Question extends React.PureComponent {
                 color='primary'
                 type='submit'
                 className={classes.submit}
-                disabled={answer === null || isSubmitting}
+                disabled={userAnswer === null || isSubmitting}
               >
                Submit
               </Button>

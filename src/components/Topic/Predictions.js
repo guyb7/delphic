@@ -25,7 +25,6 @@ class TopicPredictions extends React.Component {
           lockTime: 1531602000,
           answerTime: 1531602000,
           resolveTime: 1531602000,
-          result: 'correct',
           question: 'Who will win?',
           questionFormat: 'radio',
           options: [
@@ -37,7 +36,12 @@ class TopicPredictions extends React.Component {
               value: 'los_angeles'
             }
           ],
-          answer: 'houston'
+          userAnswer: 'houston',
+          correctAnswer: 'houston',
+          stats: {
+            houston: 273,
+            los_angeles: 191
+          }
         }, {
           id: 'aBc1W4',
           title: 'Game 2',
@@ -46,7 +50,6 @@ class TopicPredictions extends React.Component {
           lockTime: 1531602000,
           answerTime: 1531602000,
           resolveTime: 1531602000,
-          result: 'incorrect',
           question: 'Who will win?',
           questionFormat: 'radio',
           options: [
@@ -58,7 +61,12 @@ class TopicPredictions extends React.Component {
               value: 'los_angeles'
             }
           ],
-          answer: 'houston'
+          userAnswer: 'houston',
+          correctAnswer: 'los_angeles',
+          stats: {
+            houston: 223,
+            los_angeles: 210
+          }
         }, {
           id: 'aBc1W5',
           title: 'Game 3',
@@ -67,7 +75,6 @@ class TopicPredictions extends React.Component {
           lockTime: 1532120400,
           answerTime: 1532120400,
           resolveTime: 1532167200,
-          result: null,
           question: 'Who will win?',
           questionFormat: 'radio',
           options: [
@@ -79,7 +86,9 @@ class TopicPredictions extends React.Component {
               value: 'los_angeles'
             }
           ],
-          answer: 'los_angeles'
+          userAnswer: 'los_angeles',
+          correctAnswer: null,
+          stats: null
         }, {
           id: 'aBc1W0',
           title: 'Game 4',
@@ -88,7 +97,6 @@ class TopicPredictions extends React.Component {
           lockTime: 1532120400,
           answerTime: null,
           resolveTime: 1532167200,
-          result: null,
           question: 'Who will win?',
           questionFormat: 'radio',
           options: [
@@ -100,7 +108,9 @@ class TopicPredictions extends React.Component {
               value: 'los_angeles'
             }
           ],
-          answer: null
+          userAnswer: null,
+          correctAnswer: null,
+          stats: null
         }
       ]
     }
