@@ -21,6 +21,7 @@ const Theme = createMuiTheme({
   spacing: {
     half: 4,
     unit: 8,
+    unitHalf: 12,
     double: 16,
     triple: 24,
     quad: 32,

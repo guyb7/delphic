@@ -9,7 +9,7 @@ import ChevronDownIcon from 'mdi-material-ui/ChevronDown'
 
 import StatusCounter from './StatusCounter'
 import Question from './Question/'
-import Results from './Results'
+import AllAnswers from './AllAnswers'
 
 const styles = theme => {
   return {
@@ -23,19 +23,10 @@ const styles = theme => {
       justifyContent: 'space-between',
       alignItems: 'center'
     },
-    question: {
+    body: {
       display: 'flex',
       flexDirection: 'column',
-      flexGrow: 2
-    },
-    results: {
-      display: 'flex',
-      flexDirection: 'column',
-      flexGrow: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      color: theme.palette.grey[400],
-      backgroundColor: theme.palette.grey[100]
+      alignItems: 'center'
     }
   }
 }
@@ -84,7 +75,8 @@ class Prediction extends React.Component {
       questionFormat,
       options,
       correctAnswer,
-      stats
+      stats,
+      allAnswers
     } = this.props
     const {
       userAnswer,
@@ -107,9 +99,8 @@ class Prediction extends React.Component {
             <StatusCounter {...statusProps} />
           </div>
         </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
+        <ExpansionPanelDetails className={classes.body}>
           <Question
-            className={classes.question}
             question={question}
             questionFormat={questionFormat}
             options={options}
@@ -122,7 +113,7 @@ class Prediction extends React.Component {
             isSubmitting={isSubmitting}
           />
           {
-            stats && <Results />
+            allAnswers && <AllAnswers options={options} answers={allAnswers} />
           }
         </ExpansionPanelDetails>
       </ExpansionPanel>

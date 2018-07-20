@@ -14,7 +14,7 @@ const styles = theme => {
       color: theme.palette.text.primary
     },
     correct: {
-      color: theme.palette.green[50],
+      color: theme.palette.common.white,
       backgroundColor: theme.palette.green[500],
       borderRadius: '1em',
       padding: theme.spacing.half,
@@ -22,7 +22,7 @@ const styles = theme => {
       paddingRight: theme.spacing.unit
     },
     incorrect: {
-      color: theme.palette.red[50],
+      color: theme.palette.common.white,
       backgroundColor: theme.palette.red[500],
       borderRadius: '1em',
       padding: theme.spacing.half,

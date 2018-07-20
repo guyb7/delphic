@@ -41,7 +41,70 @@ class TopicPredictions extends React.Component {
           stats: {
             houston: 273,
             los_angeles: 191
-          }
+          },
+          allAnswers: [
+            {
+              user: 'pepe31',
+              answer: 'houston'
+            }, {
+              user: 'Papa',
+              answer: 'los_angeles'
+            }, {
+              user: 'george',
+              answer: 'los_angeles'
+            }, {
+              user: 'gtgtgt',
+              answer: 'houston'
+            }, {
+              user: 'pepe311',
+              answer: 'houston'
+            }, {
+              user: 'Papa1',
+              answer: 'los_angeles'
+            }, {
+              user: 'george1',
+              answer: 'los_angeles'
+            }, {
+              user: 'gtgtgt1',
+              answer: 'houston'
+            }, {
+              user: 'pepe312',
+              answer: 'houston'
+            }, {
+              user: 'Papa2',
+              answer: 'los_angeles'
+            }, {
+              user: 'george2',
+              answer: 'los_angeles'
+            }, {
+              user: 'gtgtgt2',
+              answer: 'houston'
+            }, {
+              user: 'pepe313',
+              answer: 'houston'
+            }, {
+              user: 'Papa3',
+              answer: 'los_angeles'
+            }, {
+              user: 'george3',
+              answer: 'los_angeles'
+            }, {
+              user: 'gtgtgt3',
+              answer: 'houston'
+            }, {
+              user: 'pepe314',
+              answer: 'houston'
+            }, {
+              user: 'Papa4',
+              answer: 'los_angeles'
+            }, {
+              user: 'george4',
+              answer: 'los_angeles'
+            }, {
+              user: 'gtgtgt4',
+              answer: 'houston'
+            }
+          ]
         }, {
           id: 'aBc1W4',
           title: 'Game 2',

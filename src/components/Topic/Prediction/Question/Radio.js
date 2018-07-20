@@ -15,6 +15,11 @@ const styles = theme => {
         color: theme.palette.green[500] + ' !important'
       }
     },
+    checked: {
+      '& *': {
+        color: theme.palette.primary[500] + ' !important'
+      }
+    },
     label: {
       flexGrow: 1
     },
@@ -23,7 +28,9 @@ const styles = theme => {
       justifyContent: 'space-between'
     },
     stats: {
-      fontSize: 12
+      fontSize: 12,
+      minWidth: 100,
+      textAlign: 'right'
     }
   }
 }
@@ -74,7 +81,7 @@ class Question extends React.PureComponent {
               }}
               value={o.value}
               control={
-                <Radio />
+                <Radio classes={{ checked: disabled ? '' : classes.checked }} />
               }
               label={label}
               disabled={disabled}

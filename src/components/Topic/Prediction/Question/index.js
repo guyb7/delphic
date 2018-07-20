@@ -10,6 +10,11 @@ import Radio from './Radio'
 const styles = theme => {
   return {
     root: {
+      display: 'flex',
+      flexDirection: 'column',
+      width: '100%',
+      marginTop: theme.spacing.double,
+      marginBottom: theme.spacing.double
     },
     form: {
       display: 'flex',
@@ -25,7 +30,6 @@ class Question extends React.PureComponent {
   render () {
     const {
       classes,
-      className,
       question,
       questionFormat,
       options,
@@ -44,7 +48,7 @@ class Question extends React.PureComponent {
       QuestionComponent = <div />
     }
     return (
-      <div className={`${className} ${classes.root}`}>
+      <div className={classes.root}>
         <Typography>{question}</Typography>
         <form className={classes.form} onSubmit={onSubmit}>
           <FormControl>
