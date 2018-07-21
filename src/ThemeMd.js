@@ -34,8 +34,30 @@ const StyledLink = styled(Link)({
 
 export default {
   heading: ({ level, children }) => {
+    let variant = 'headline'
+    switch (level) {
+      case 1:
+        variant = 'display1'
+        break
+      case 2:
+        variant = 'headline'
+        break
+      case 3:
+        variant = 'title'
+        break
+      case 4:
+        variant = 'subheading'
+        break
+      case 5:
+        variant = 'body2'
+        break
+      case 6:
+        variant = 'body1'
+        break
+      default:
+    }
     return (
-      <Typography variant='headline' component={`h${level}`}>
+      <Typography variant={variant} component={`h${level}`}>
         {children}
       </Typography>
     )
