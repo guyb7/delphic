@@ -33,9 +33,10 @@ class App extends React.Component {
             <Navbar />
             <Switch>
               <Route exact path='/' component={Home} />
-              <Route exact path='/arenas/:arena' component={Arena} />
-              <Redirect exact from='/arenas/:arena/:topic' to='/arenas/:arena/:topic/overview' />
-              <Route exact path='/arenas/:arena/:topic/:section' component={Topic} />
+              <Redirect exact from='/a/:arena' to='/a/:arena/topics' />
+              <Route exact path='/a/:arena/:section' component={Arena} />
+              <Redirect exact from='/a/:arena/topics/:topic' to='/a/:arena/topics/:topic/overview' />
+              <Route exact path='/a/:arena/topics/:topic/:section' component={Topic} />
               <Route component={NotFound} />
             </Switch>
             <Footer />

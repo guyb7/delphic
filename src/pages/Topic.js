@@ -34,7 +34,7 @@ class TopicPage extends React.Component {
         path: '/'
       }, {
         title: arena,
-        path: '/arenas/' + arena
+        path: '/a/' + arena
       }, {
         title: topic,
         path: null
@@ -45,10 +45,10 @@ class TopicPage extends React.Component {
         <Breadcrumbs items={breadcrumbsItems} />
         <TopicHeader />
         <Switch>
-          <Route exact path='/arenas/:arena/:topic/overview' component={Overview} />
-          <Route exact path='/arenas/:arena/:topic/predictions' component={Predictions} />
-          <Route exact path='/arenas/:arena/:topic/leaderboard' component={Leaderboard} />
-          <Route exact path='/arenas/:arena/:topic/rules' component={Rules} />
+          <Route exact path='/a/:arena/topics/:topic/overview' component={Overview} />
+          <Route exact path='/a/:arena/topics/:topic/predictions' component={Predictions} />
+          <Route exact path='/a/:arena/topics/:topic/leaderboard' component={Leaderboard} />
+          <Route exact path='/a/:arena/topics/:topic/rules' component={Rules} />
         </Switch>
       </div>
     )

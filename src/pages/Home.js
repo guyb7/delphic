@@ -35,10 +35,10 @@ class Home extends React.Component {
               <Link to='/'>Home</Link>
             </li>
             <li>
-              <Link to={`/arenas/nba`}>Arena 1</Link>
+              <Link to={`/a/nba`}>NBA Arena</Link>
             </li>
             <li>
-              <Link to={`/arenas/nba/nba-finals-2018`}>Topic 1</Link>
+              <Link to={`/a/nba/topics/nba-finals-2018`}>NBA Finals 2018 Topic</Link>
             </li>
           </ul>
         </div>

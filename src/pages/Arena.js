@@ -1,31 +1,50 @@
 import React from 'react'
+import { Switch, Route } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
+
+import Breadcrumbs from '../components/Breadcrumbs'
+import ArenaHeader from '../components/Arena/Header'
+import Topics from '../components/Arena/Topics'
+import Leaderboard from '../components/Arena/Leaderboard'
+import Rules from '../components/Arena/Rules'
 
 const styles = theme => {
   return {
     root: {
+      ...theme.utils.container,
+      padding: theme.spacing.unit,
+      paddingTop: theme.spacing.double
     },
     container: {
-      ...theme.utils.container,
-      padding: theme.spacing.huge,
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center'
-    },
-    headline: {
-      marginBottom: theme.spacing.huge
     }
   }
 }
 
 class ArenaPage extends React.Component {
   render () {
-    const { classes } = this.props
+    const { classes, match } = this.props
+    const { arena } = match.params
+    const breadcrumbsItems = [
+      {
+        title: 'home',
+        path: '/'
+      }, {
+        title: arena,
+        path: null
+      }
+    ]
     return (
       <div className={classes.root}>
-        <div className={classes.container}>
-          Arena
-        </div>
+        <Breadcrumbs items={breadcrumbsItems} />
+        <ArenaHeader />
+        <Switch>
+          <Route exact path='/a/:arena/topics' component={Topics} />
+          <Route exact path='/a/:arena/leaderboard' component={Leaderboard} />
+          <Route exact path='/a/:arena/rules' component={Rules} />
+        </Switch>
       </div>
     )
   }
