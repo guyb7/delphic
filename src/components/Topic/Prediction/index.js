@@ -66,6 +66,8 @@ class Prediction extends React.Component {
   render () {
     const {
       classes,
+      arena,
+      topic,
       title,
       createdAt,
       lockTime,
@@ -113,7 +115,12 @@ class Prediction extends React.Component {
             isSubmitting={isSubmitting}
           />
           {
-            allAnswers && <AllAnswers options={options} answers={allAnswers} />
+            allAnswers && <AllAnswers
+              options={options}
+              answers={allAnswers}
+              arena={arena}
+              topic={topic}
+            />
           }
         </ExpansionPanelDetails>
       </ExpansionPanel>

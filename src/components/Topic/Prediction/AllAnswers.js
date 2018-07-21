@@ -8,6 +8,8 @@ import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import Button from '@material-ui/core/Button'
 
+import InlineUser from '../../User/Inline'
+
 const styles = theme => {
   return {
     root: {
@@ -59,13 +61,14 @@ class AllAnswers extends React.PureComponent {
   }
 
   render () {
-    const { classes } = this.props
+    const { classes, arena, topic } = this.props
     const {
       showAll,
       optionsMap
     } = this.state
 
     const answers = showAll ? this.props.answers : this.props.answers.slice(0, 10)
+    const userContext = { arena, topic }
 
     return (
       <div className={classes.root}>
@@ -85,7 +88,7 @@ class AllAnswers extends React.PureComponent {
                     {i + 1}
                   </Cell>
                   <Cell>
-                    {n.user}
+                    <InlineUser username={n.user} context={userContext} />
                   </Cell>
                   <Cell>
                     {optionsMap[n.answer]}

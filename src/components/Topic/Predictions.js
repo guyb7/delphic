@@ -180,11 +180,12 @@ class TopicPredictions extends React.Component {
   }
 
   render () {
-    const { classes } = this.props
+    const { classes, match } = this.props
+    const { arena, topic } = match.params
     return (
       <div className={classes.root}>
         {
-          this.state.predictions.map(p => <Prediction key={p.id} {...p} />)
+          this.state.predictions.map(p => <Prediction key={p.id} {...p} arena={arena} topic={topic} />)
         }
       </div>
     )
