@@ -1,6 +1,7 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { withRouter } from 'react-router'
+import { Link } from 'react-router-dom'
 
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
@@ -8,6 +9,7 @@ import CardContent from '@material-ui/core/CardContent'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 import Typography from '@material-ui/core/Typography'
+import RightIcon from 'mdi-material-ui/ChevronRight'
 
 import get from 'lodash/get'
 
@@ -18,6 +20,18 @@ const styles = theme => {
     },
     actions: {
       paddingBottom: 0
+    },
+    breadcrumbs: {
+      display: 'flex',
+      alignItems: 'center'
+    },
+    link: {
+      ...theme.utils.link
+    },
+    breadcrumbsIcon: {
+      fontSize: 28,
+      marginLeft: theme.spacing.half,
+      marginRight: theme.spacing.half
     }
   }
 }
@@ -35,7 +49,11 @@ class TopicHeader extends React.Component {
     return (
       <Card className={classes.root}>
         <CardContent>
-          <Typography gutterBottom variant='headline' component='h2'>
+          <Typography className={classes.breadcrumbs} gutterBottom variant='headline' component='h2'>
+            <Link className={classes.link} to='/a/nba'>
+              NBA
+            </Link>
+            <RightIcon className={classes.breadcrumbsIcon} />
             NBA Finals 2018
           </Typography>
           <Typography component='p'>

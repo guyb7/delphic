@@ -2,7 +2,6 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
 
-import Breadcrumbs from '../components/Breadcrumbs'
 import ArenaHeader from '../components/Arena/Header'
 import Topics from '../components/Arena/Topics'
 import Leaderboard from '../components/Arena/Leaderboard'
@@ -25,20 +24,9 @@ const styles = theme => {
 
 class ArenaPage extends React.Component {
   render () {
-    const { classes, match } = this.props
-    const { arena } = match.params
-    const breadcrumbsItems = [
-      {
-        title: 'home',
-        path: '/'
-      }, {
-        title: arena,
-        path: null
-      }
-    ]
+    const { classes } = this.props
     return (
       <div className={classes.root}>
-        <Breadcrumbs items={breadcrumbsItems} />
         <ArenaHeader />
         <Switch>
           <Route exact path='/a/:arena/topics' component={Topics} />

@@ -2,7 +2,6 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
 
-import Breadcrumbs from '../components/Breadcrumbs'
 import TopicHeader from '../components/Topic/Header'
 import Overview from '../components/Topic/Overview'
 import Predictions from '../components/Topic/Predictions'
@@ -26,23 +25,9 @@ const styles = theme => {
 
 class TopicPage extends React.Component {
   render () {
-    const { classes, match } = this.props
-    const { arena, topic } = match.params
-    const breadcrumbsItems = [
-      {
-        title: 'home',
-        path: '/'
-      }, {
-        title: arena,
-        path: '/a/' + arena
-      }, {
-        title: topic,
-        path: null
-      }
-    ]
+    const { classes } = this.props
     return (
       <div className={classes.root}>
-        <Breadcrumbs items={breadcrumbsItems} />
         <TopicHeader />
         <Switch>
           <Route exact path='/a/:arena/topics/:topic/overview' component={Overview} />
