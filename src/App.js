@@ -8,6 +8,7 @@ import Theme from './Theme'
 import Home from './pages/Home'
 import Arena from './pages/Arena'
 import Topic from './pages/Topic'
+import User from './pages/User'
 import NotFound from './pages/NotFound'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -37,6 +38,7 @@ class App extends React.Component {
               <Route exact path='/a/:arena/:section' component={Arena} />
               <Redirect exact from='/a/:arena/topics/:topic' to='/a/:arena/topics/:topic/overview' />
               <Route exact path='/a/:arena/topics/:topic/:section' component={Topic} />
+              <Route exact path='/u/:user' component={User} />
               <Route component={NotFound} />
             </Switch>
             <Footer />

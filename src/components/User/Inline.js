@@ -88,7 +88,7 @@ class InlineUser extends React.Component {
   render () {
     const { classes, username } = this.props
     const { userData } = this.state
-    const userUrl = '/users/' + username
+    const userUrl = '/u/' + username
     return (
       <span className={classes.root} onMouseEnter={this.getUserData}>
         <Tooltip
