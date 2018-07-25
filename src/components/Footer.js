@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
 
+import Logo from './Logo'
+
 const styles = theme => {
   return {
     root: {
@@ -15,8 +17,15 @@ const styles = theme => {
       minHeight: theme.spacing.huge
     },
     text: {
+      display: 'flex',
+      alignItems: 'center',
       padding: theme.spacing.unit,
-      paddingLeft: 0
+      paddingLeft: 0,
+      color: theme.palette.grey[600]
+    },
+    logo: {
+      height: 18,
+      marginRight: theme.spacing.unit
     },
     link: {
       ...theme.utils.link,
@@ -32,6 +41,7 @@ class Footer extends React.Component {
     return (
       <div className={classes.root}>
         <div className={classes.text}>
+          <Logo className={classes.logo} mainColor='#757575' secondaryColor='#dae0e6' />
           &#169; 2018 Delphic
         </div>
         <div>

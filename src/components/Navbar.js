@@ -13,6 +13,8 @@ import AccountIcon from 'mdi-material-ui/Account'
 import SettingsIcon from 'mdi-material-ui/Settings'
 import LogoutIcon from 'mdi-material-ui/Logout'
 
+import Logo from './Logo'
+
 const styles = theme => {
   return {
     root: {
@@ -22,11 +24,16 @@ const styles = theme => {
       height: theme.spacing.penta,
       backgroundColor: theme.palette.background.paper
     },
-    logo: {
+    logoContainer: {
       ...theme.utils.link,
       padding: theme.spacing.unit,
       paddingLeft: theme.spacing.double,
-      paddingRight: theme.spacing.double
+      paddingRight: theme.spacing.double,
+      display: 'flex',
+      alignItems: 'center'
+    },
+    logo: {
+      marginRight: theme.spacing.unit
     },
     buttons: {
       display: 'flex'
@@ -79,8 +86,8 @@ class Navbar extends React.Component {
     const { userMenuAnchorEl } = this.state
     return (
       <div className={classes.root}>
-        <Link className={classes.logo} to='/'>
-          Delphic
+        <Link className={classes.logoContainer} to='/'>
+          <Logo className={classes.logo} /> Delphic
         </Link>
         <div className={classes.buttons}>
           <Button className={classes.button} component={Link} to='/arenas'>
