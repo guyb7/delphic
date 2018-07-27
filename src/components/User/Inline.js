@@ -31,6 +31,9 @@ const styles = theme => {
         marginRight: theme.spacing.unit,
         fontWeight: 500
       }
+    },
+    tooltiPpopper: {
+      opacity: 1
     }
   }
 }
@@ -105,7 +108,10 @@ class InlineUser extends React.Component {
           leaveDelay={200}
           disableFocusListener
           disableTouchListener
-          classes={{ tooltip: classes.tooltip }}
+          classes={{
+            tooltip: classes.tooltip,
+            popper: classes.tooltiPpopper
+          }}
         >
           <Link className={classes.link} to={userUrl}>
             {username}

@@ -45,7 +45,7 @@ const Cell = withStyles(styles)(UnstyledCell)
 class ArenaLeaderboard extends React.PureComponent {
   render () {
     const { classes, match } = this.props
-    const { arena, topic } = match.params
+    const { arena } = match.params
 
     const answers = [
       {
@@ -98,7 +98,7 @@ class ArenaLeaderboard extends React.PureComponent {
         score: 5
       }
     ]
-    const userContext = { arena, topic }
+    const userContext = { arena }
 
     return (
       <Paper className={classes.root} elevation={1}>
