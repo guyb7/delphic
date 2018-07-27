@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import Avatar from '@material-ui/core/Avatar'
+import WinnerIcon from 'mdi-material-ui/Crown'
 
 const styles = theme => {
   return {
@@ -27,18 +28,53 @@ const styles = theme => {
       }
     },
     topicMain: {
-      flexGrow: 1
+      flexGrow: 1,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between'
     },
-    topicRight: {
+    leader: {
+      width: theme.spacing.big * 1.5,
       color: theme.palette.text.primary,
       textDecoration: 'none',
-      fontSize: 12
+      textAlign: 'center'
+    },
+    leaderTitle: {
+      color: theme.palette.text.hint,
+      fontSize: 12,
+      marginBottom: theme.spacing.double
+    },
+    winnerIcon: {
+      color: theme.palette.amber[500],
+      marginBottom: theme.spacing.unit
+    },
+    leaderName: {
+      fontSize: 14,
+      marginBottom: theme.spacing.unit
+    },
+    leaderPoints: {
+      fontSize: 13,
+      color: theme.palette.text.primary
     },
     image: {
       height: theme.spacing.big * 1.5,
       width: theme.spacing.big * 1.5,
       marginRight: theme.spacing.double,
       borderRadius: 0
+    },
+    statusPredictions: {
+      color: theme.palette.text.primary,
+      fontSize: 12,
+      marginRight: theme.spacing.double
+    },
+    statusOpen: {
+      fontSize: 12,
+      color: theme.palette.common.white,
+      backgroundColor: theme.palette.green[500],
+      borderRadius: '1em',
+      padding: theme.spacing.half,
+      paddingLeft: theme.spacing.unit,
+      paddingRight: theme.spacing.unit
     }
   }
 }
@@ -50,7 +86,9 @@ class Topic extends React.PureComponent {
       id,
       title,
       imageUrl,
-      description
+      description,
+      predictions,
+      leader
     } = this.props
     return (
       <Link className={classes.topic} to={'./topics/' + id}>
@@ -59,19 +97,38 @@ class Topic extends React.PureComponent {
           className={classes.image}
         />
         <div className={classes.topicMain}>
-          <Typography variant='subheading' component='h3'>
-            {title}
-          </Typography>
-          <Typography noWrap component='p'>
-            {description}
-          </Typography>
+          <div>
+            <Typography variant='subheading' component='h3'>
+              {title}
+            </Typography>
+            <Typography noWrap component='p'>
+              {description}
+            </Typography>
+          </div>
+          <div>
+            <span className={classes.statusPredictions}>{predictions.total} Predictions</span>
+            {
+              predictions.open &&
+              <span className={classes.statusOpen}>{predictions.open} Open</span>
+            }
+          </div>
         </div>
-        <div className={classes.topicRight}>
-          <div>81% Avg. Success</div>
-          <div>4 Predictions</div>
-          <div>1 Resolved</div>
-          <div>2 Open</div>
-        </div>
+        {
+          leader &&
+          <div className={classes.leader}>
+            {
+              predictions.open
+                ? <div className={classes.leaderTitle}>Current Leader</div>
+                : <WinnerIcon className={classes.winnerIcon} />
+            }
+            <div className={classes.leaderName}>
+              {leader.username}
+            </div>
+            <div className={classes.leaderPoints}>
+              {leader.points} points
+            </div>
+          </div>
+        }
       </Link>
     )
   }
@@ -86,17 +143,40 @@ class ArenaTopics extends React.Component {
         id: 'nba-finals-2018',
         title: 'NBA Finals 2018',
         description: 'Predictions for the 2018 finals: Cleveland vs Golden State',
-        imageUrl: '/static/nba-finals.jpg'
+        imageUrl: '/static/nba-finals.jpg',
+        predictions: {
+          total: 4,
+          open: 2
+        },
+        leader: {
+          username: 'bob',
+          points: 14
+        }
       }, {
         id: 'nba-finals-2017',
         title: 'NBA Finals 2017',
         description: 'Predictions for the 2017 finals: Cleveland vs Golden State',
-        imageUrl: '/static/nba-finals-3.jpg'
+        imageUrl: '/static/nba-finals-3.jpg',
+        predictions: {
+          total: 5,
+          open: 1
+        },
+        leader: {
+          username: 'pepe',
+          points: 17
+        }
       }, {
         id: 'nba-finals-2016',
         title: 'NBA Finals 2016',
         description: 'Predictions for the 2016 finals: Cleveland vs Golden State',
-        imageUrl: '/static/nba-finals-2.png'
+        imageUrl: '/static/nba-finals-2.png',
+        predictions: {
+          total: 4
+        },
+        leader: {
+          username: 'bob',
+          points: 19
+        }
       }
     ]
     return (

@@ -3,6 +3,7 @@ import blue from '@material-ui/core/colors/blue'
 import deepOrange from '@material-ui/core/colors/deepOrange'
 import green from '@material-ui/core/colors/green'
 import red from '@material-ui/core/colors/red'
+import amber from '@material-ui/core/colors/amber'
 
 const Theme = createMuiTheme({
   palette: {
@@ -10,6 +11,7 @@ const Theme = createMuiTheme({
     secondary: deepOrange,
     green,
     red,
+    amber,
     background: {
       paper: '#fff',
       default: '#dae0e6'
