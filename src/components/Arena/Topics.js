@@ -37,7 +37,8 @@ const styles = theme => {
     image: {
       height: theme.spacing.big * 1.5,
       width: theme.spacing.big * 1.5,
-      marginRight: theme.spacing.double
+      marginRight: theme.spacing.double,
+      borderRadius: 0
     }
   }
 }
