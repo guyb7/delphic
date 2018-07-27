@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles'
 
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
+import Avatar from '@material-ui/core/Avatar'
 
 const styles = theme => {
   return {
@@ -25,10 +26,18 @@ const styles = theme => {
         backgroundColor: theme.palette.grey[100]
       }
     },
+    topicMain: {
+      flexGrow: 1
+    },
     topicRight: {
       color: theme.palette.text.primary,
       textDecoration: 'none',
       fontSize: 12
+    },
+    image: {
+      height: theme.spacing.big * 1.5,
+      width: theme.spacing.big * 1.5,
+      marginRight: theme.spacing.double
     }
   }
 }
@@ -39,11 +48,16 @@ class Topic extends React.PureComponent {
       classes,
       id,
       title,
+      imageUrl,
       description
     } = this.props
     return (
       <Link className={classes.topic} to={'./topics/' + id}>
-        <div>
+        <Avatar
+          src={imageUrl}
+          className={classes.image}
+        />
+        <div className={classes.topicMain}>
           <Typography variant='subheading' component='h3'>
             {title}
           </Typography>
@@ -70,15 +84,18 @@ class ArenaTopics extends React.Component {
       {
         id: 'nba-finals-2018',
         title: 'NBA Finals 2018',
-        description: 'Predictions for the 2018 finals: Cleveland vs Golden State'
+        description: 'Predictions for the 2018 finals: Cleveland vs Golden State',
+        imageUrl: '/static/nba-finals.jpg'
       }, {
         id: 'nba-finals-2017',
         title: 'NBA Finals 2017',
-        description: 'Predictions for the 2017 finals: Cleveland vs Golden State'
+        description: 'Predictions for the 2017 finals: Cleveland vs Golden State',
+        imageUrl: '/static/nba-finals-3.jpg'
       }, {
         id: 'nba-finals-2016',
         title: 'NBA Finals 2016',
-        description: 'Predictions for the 2016 finals: Cleveland vs Golden State'
+        description: 'Predictions for the 2016 finals: Cleveland vs Golden State',
+        imageUrl: '/static/nba-finals-2.png'
       }
     ]
     return (
