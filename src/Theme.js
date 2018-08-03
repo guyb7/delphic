@@ -51,6 +51,13 @@ const Theme = createMuiTheme({
         color: blue[500]
       }
     }
+  },
+  overrides: {
+    MuiInput: {
+      input: {
+        fontSize: 14
+      }
+    }
   }
 })
 

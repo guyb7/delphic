@@ -65,8 +65,8 @@ const styles = theme => {
       marginRight: theme.spacing.unit
     },
     textField: {
-      fontSize: 13,
-      marginBottom: theme.spacing.unit
+      marginBottom: theme.spacing.double,
+      maxWidth: 200
     }
   }
 }
