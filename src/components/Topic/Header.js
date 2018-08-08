@@ -2,31 +2,33 @@ import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
 import { withRouter } from 'react-router'
 import { Link } from 'react-router-dom'
+import get from 'lodash/get'
 
-import Card from '@material-ui/core/Card'
-import CardActions from '@material-ui/core/CardActions'
-import CardContent from '@material-ui/core/CardContent'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
-import Typography from '@material-ui/core/Typography'
 import RightIcon from 'mdi-material-ui/ChevronRight'
 
-import get from 'lodash/get'
+import Header from '../Header'
 
 const styles = theme => {
   return {
     root: {
       marginBottom: theme.spacing.quad
     },
-    actions: {
-      paddingBottom: 0
+    tabsRoot: {
+      color: theme.palette.primary.contrastText
+    },
+    tabsIndicator: {
+      backgroundColor: theme.palette.primary.contrastText,
+      height: 3
     },
     breadcrumbs: {
       display: 'flex',
       alignItems: 'center'
     },
     link: {
-      ...theme.utils.link
+      ...theme.utils.link,
+      color: theme.palette.primary.contrastText
     },
     breadcrumbsIcon: {
       fontSize: 28,
@@ -43,40 +45,56 @@ class TopicHeader extends React.Component {
     this.props.history.push(newUrl)
   }
 
+  tabs () {
+    const { classes } = this.props
+    const tab = get(this.props, 'match.params.section', 'topics')
+    return (
+      <Tabs
+        value={tab}
+        classes={{
+          root: classes.tabsRoot,
+          indicator: classes.tabsIndicator
+        }}
+        onChange={this.onTabChange}
+        scrollable
+        scrollButtons='off'
+      >
+        <Tab label='Overview' value='overview' />
+        <Tab label='Predictions' value='predictions' />
+        <Tab label='Discussion' value='discussion' disabled />
+        <Tab label='Leaderboard' value='leaderboard' />
+        <Tab label='Rules' value='rules' />
+      </Tabs>
+    )
+  }
+
+  title () {
+    const { classes } = this.props
+    return (
+      <span className={classes.breadcrumbs}>
+        <Link className={classes.link} to='/a/nba'>
+          NBA
+        </Link>
+        <RightIcon className={classes.breadcrumbsIcon} />
+        NBA Finals 2018
+      </span>
+    )
+  }
+
   render () {
     const { classes } = this.props
-    const tab = get(this.props, 'match.params.section', 'overview')
     return (
-      <Card className={classes.root}>
-        <CardContent>
-          <Typography className={classes.breadcrumbs} gutterBottom variant='headline' component='h2'>
-            <Link className={classes.link} to='/a/nba'>
-              NBA
-            </Link>
-            <RightIcon className={classes.breadcrumbsIcon} />
-            NBA Finals 2018
-          </Typography>
-          <Typography component='p'>
-            Predictions for the 2018 finals: Cleveland vs Golden State
-          </Typography>
-        </CardContent>
-        <CardActions className={classes.actions}>
-          <Tabs
-            value={tab}
-            indicatorColor='primary'
-            textColor='primary'
-            onChange={this.onTabChange}
-            scrollable
-            scrollButtons='off'
-          >
-            <Tab label='Overview' value='overview' />
-            <Tab label='Predictions' value='predictions' />
-            <Tab label='Discussion' value='discussion' disabled />
-            <Tab label='Leaderboard' value='leaderboard' />
-            <Tab label='Rules' value='rules' />
-          </Tabs>
-        </CardActions>
-      </Card>
+      <Header
+        title={this.title()}
+        description='Predictions for the 2018 finals: Cleveland vs Golden State'
+        classes={{
+          root: classes.root,
+          container: classes.container,
+          title: classes.title,
+          description: classes.description
+        }}
+        bottom={this.tabs()}
+      />
     )
   }
 }

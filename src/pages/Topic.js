@@ -10,15 +10,9 @@ import Rules from '../components/Topic/Rules'
 
 const styles = theme => {
   return {
-    root: {
-      ...theme.utils.container,
-      padding: theme.spacing.unit,
-      paddingTop: theme.spacing.double
-    },
+    root: {},
     container: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center'
+      ...theme.utils.container
     }
   }
 }
@@ -29,12 +23,14 @@ class TopicPage extends React.Component {
     return (
       <div className={classes.root}>
         <TopicHeader />
-        <Switch>
-          <Route exact path='/a/:arena/topics/:topic/overview' component={Overview} />
-          <Route exact path='/a/:arena/topics/:topic/predictions' component={Predictions} />
-          <Route exact path='/a/:arena/topics/:topic/leaderboard' component={Leaderboard} />
-          <Route exact path='/a/:arena/topics/:topic/rules' component={Rules} />
-        </Switch>
+        <div className={classes.container}>
+          <Switch>
+            <Route exact path='/a/:arena/topics/:topic/overview' component={Overview} />
+            <Route exact path='/a/:arena/topics/:topic/predictions' component={Predictions} />
+            <Route exact path='/a/:arena/topics/:topic/leaderboard' component={Leaderboard} />
+            <Route exact path='/a/:arena/topics/:topic/rules' component={Rules} />
+          </Switch>
+        </div>
       </div>
     )
   }
