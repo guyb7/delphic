@@ -13,11 +13,6 @@ const styles = theme => {
       ...theme.utils.container,
       padding: theme.spacing.unit,
       paddingTop: theme.spacing.double
-    },
-    container: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center'
     }
   }
 }

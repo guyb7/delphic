@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles'
 import Theme from './Theme'
 
 import Home from './pages/Home'
+import Arenas from './pages/Arenas'
 import Arena from './pages/Arena'
 import Topic from './pages/Topic'
 import User from './pages/User'
@@ -34,6 +35,7 @@ class App extends React.Component {
             <Navbar />
             <Switch>
               <Route exact path='/' component={Home} />
+              <Route exact path='/arenas' component={Arenas} />
               <Redirect exact from='/a/:arena' to='/a/:arena/topics' />
               <Route exact path='/a/:arena/:section' component={Arena} />
               <Redirect exact from='/a/:arena/topics/:topic' to='/a/:arena/topics/:topic/overview' />
