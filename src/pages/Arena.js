@@ -9,7 +9,8 @@ import Rules from '../components/Arena/Rules'
 
 const styles = theme => {
   return {
-    root: {
+    root: {},
+    container: {
       ...theme.utils.container,
       padding: theme.spacing.unit,
       paddingTop: theme.spacing.double
@@ -23,11 +24,13 @@ class ArenaPage extends React.Component {
     return (
       <div className={classes.root}>
         <ArenaHeader />
-        <Switch>
-          <Route exact path='/a/:arena/topics' component={Topics} />
-          <Route exact path='/a/:arena/leaderboard' component={Leaderboard} />
-          <Route exact path='/a/:arena/rules' component={Rules} />
-        </Switch>
+        <div className={classes.container}>
+          <Switch>
+            <Route exact path='/a/:arena/topics' component={Topics} />
+            <Route exact path='/a/:arena/leaderboard' component={Leaderboard} />
+            <Route exact path='/a/:arena/rules' component={Rules} />
+          </Switch>
+        </div>
       </div>
     )
   }
