@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { withStyles } from '@material-ui/core/styles'
 
 import Typography from '@material-ui/core/Typography'
@@ -128,17 +127,6 @@ class Home extends React.Component {
               </Button>
             </Paper>
           </div>
-          <ul>
-            <li>
-              <Link to='/'>Home</Link>
-            </li>
-            <li>
-              <Link to={`/a/nba`}>NBA Arena</Link>
-            </li>
-            <li>
-              <Link to={`/a/nba/topics/nba-finals-2018`}>NBA Finals 2018 Topic</Link>
-            </li>
-          </ul>
         </div>
       </div>
     )
