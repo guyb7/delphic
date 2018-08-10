@@ -34,9 +34,13 @@ class Header extends React.PureComponent {
           <Typography className={classes.title} gutterBottom variant='headline' component='h2'>
             {title}
           </Typography>
-          <Typography className={classes.description} component='p'>
-            {description}
-          </Typography>
+          {
+            description && (
+              <Typography className={classes.description} component='p'>
+                {description}
+              </Typography>
+            )
+          }
           {bottom}
         </div>
       </div>
