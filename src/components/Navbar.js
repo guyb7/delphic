@@ -14,6 +14,7 @@ import SettingsIcon from 'mdi-material-ui/Settings'
 import LogoutIcon from 'mdi-material-ui/Logout'
 
 import Logo from './Logo'
+import LoginDialog from './LoginDialog'
 
 const styles = theme => {
   return {
@@ -69,7 +70,9 @@ class Navbar extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      userMenuAnchorEl: null
+      userMenuAnchorEl: null,
+      isLoginOpen: false,
+      isLoggedIn: false
     }
   }
 
@@ -81,9 +84,74 @@ class Navbar extends React.Component {
     this.setState({ userMenuAnchorEl: null })
   }
 
-  render () {
+  onLoginOpen = () => {
+    this.setState({ isLoginOpen: true })
+  }
+
+  onLoginClose = () => {
+    this.setState({ isLoginOpen: false })
+  }
+
+  getUserMenu () {
     const { classes } = this.props
     const { userMenuAnchorEl } = this.state
+    return <div>
+      <Button
+        className={`${classes.button} ${classes.userMenuButton}`}
+        onClick={this.onUserMenuClick}
+      >
+        Username
+      </Button>
+      <Menu
+        open={Boolean(userMenuAnchorEl)}
+        onClose={this.onUserMenuClose}
+        anchorEl={userMenuAnchorEl}
+        transitionDuration={0}
+        className={classes.userMenu}
+      >
+        <MenuItem className={classes.menuItem}>
+          <ListItemIcon className={classes.userMenuIcon}>
+            <AccountIcon />
+          </ListItemIcon>
+          <ListItemText classes={{ primary: classes.userMenuText }} inset primary='My Profile' />
+        </MenuItem>
+        <MenuItem className={classes.menuItem}>
+          <ListItemIcon className={classes.userMenuIcon}>
+            <SettingsIcon />
+          </ListItemIcon>
+          <ListItemText classes={{ primary: classes.userMenuText }} inset primary='User Settings' />
+        </MenuItem>
+        <Divider />
+        <MenuItem className={classes.menuItem}>
+          <ListItemIcon className={classes.userMenuIcon}>
+            <LogoutIcon />
+          </ListItemIcon>
+          <ListItemText classes={{ primary: classes.userMenuText }} inset primary='Log out' />
+        </MenuItem>
+      </Menu>
+    </div>
+  }
+
+  getGuestButton () {
+    const { classes } = this.props
+    const { isLoginOpen } = this.state
+    return <div>
+      <Button
+        className={`${classes.button} ${classes.userMenuButton}`}
+        onClick={this.onLoginOpen}
+      >
+        Sign In
+      </Button>
+      <LoginDialog
+        isOpen={isLoginOpen}
+        onClose={this.onLoginClose}
+      />
+    </div>
+  }
+
+  render () {
+    const { classes } = this.props
+    const { isLoggedIn } = this.state
     return (
       <div className={classes.root}>
         <Link className={classes.logoContainer} to='/'>
@@ -96,41 +164,12 @@ class Navbar extends React.Component {
           <Button className={classes.button} component={Link} to='/leaderboard'>
             Leaderboard
           </Button>
-          <div>
-            <Button
-              className={`${classes.button} ${classes.userMenuButton}`}
-              onClick={this.onUserMenuClick}
-            >
-              Sign In
-            </Button>
-            <Menu
-              open={Boolean(userMenuAnchorEl)}
-              onClose={this.onUserMenuClose}
-              anchorEl={userMenuAnchorEl}
-              transitionDuration={0}
-              className={classes.userMenu}
-            >
-              <MenuItem className={classes.menuItem}>
-                <ListItemIcon className={classes.userMenuIcon}>
-                  <AccountIcon />
-                </ListItemIcon>
-                <ListItemText classes={{ primary: classes.userMenuText }} inset primary='My Profile' />
-              </MenuItem>
-              <MenuItem className={classes.menuItem}>
-                <ListItemIcon className={classes.userMenuIcon}>
-                  <SettingsIcon />
-                </ListItemIcon>
-                <ListItemText classes={{ primary: classes.userMenuText }} inset primary='User Settings' />
-              </MenuItem>
-              <Divider />
-              <MenuItem className={classes.menuItem}>
-                <ListItemIcon className={classes.userMenuIcon}>
-                  <LogoutIcon />
-                </ListItemIcon>
-                <ListItemText classes={{ primary: classes.userMenuText }} inset primary='Log out' />
-              </MenuItem>
-            </Menu>
-          </div>
+          {
+            isLoggedIn && this.getUserMenu()
+          }
+          {
+            !isLoggedIn && this.getGuestButton()
+          }
         </div>
       </div>
     )
