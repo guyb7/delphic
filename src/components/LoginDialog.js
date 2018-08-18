@@ -5,27 +5,42 @@ import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import Dialog from '@material-ui/core/Dialog'
 import DialogContent from '@material-ui/core/DialogContent'
-import DialogTitle from '@material-ui/core/DialogTitle'
+import Typography from '@material-ui/core/Typography'
+import Divider from '@material-ui/core/Divider'
 
 const styles = theme => {
   return {
-    form: {
+    root: {
       display: 'flex',
       flexDirection: 'column',
-      padding: theme.spacing.big,
-      paddingTop: 0,
-      paddingBottom: theme.spacing.quad
+      alignItems: 'center',
+      textAlign: 'center',
+      padding: theme.spacing.double
+    },
+    loginButtons: {
+      marginTop: theme.spacing.unit,
+      marginBottom: theme.spacing.double
+    },
+    loginButton: {
+      margin: theme.spacing.unit
+    },
+    signupDividerContainer: {
+      width: '100%',
+      display: 'flex',
+      alignItems: 'center',
+      marginTop: theme.spacing.triple,
+      marginBottom: theme.spacing.triple
+    },
+    signupDivider: {
+      flexGrow: 1
+    },
+    signupDividerText: {
+      marginLeft: theme.spacing.unit,
+      marginRight: theme.spacing.unit
     },
     textField: {
       marginBottom: theme.spacing.double,
       maxWidth: 200
-    },
-    divider: {
-      marginTop: theme.spacing.quad,
-      marginBottom: theme.spacing.quad
-    },
-    forgotButton: {
-      ...theme.utils.link
     }
   }
 }
@@ -42,12 +57,31 @@ class LoginDialog extends React.PureComponent {
         open={isOpen}
         onClose={onClose}
       >
-        <DialogTitle>Log in to Delphic</DialogTitle>
         <DialogContent>
-          <div className={classes.form}>
+          <div className={classes.root}>
+            <Typography variant='body2'>
+            Log in to Delphic
+            </Typography>
+            <div className={classes.loginButtons}>
+              <Button variant='outlined' color='primary' className={classes.loginButton}>
+                Google
+              </Button>
+              <Button variant='outlined' color='primary' className={classes.loginButton}>
+                Facebook
+              </Button>
+            </div>
+            <div className={classes.signupDividerContainer}>
+              <Divider className={classes.signupDivider} />
+              <Typography className={classes.signupDividerText} variant='caption'>
+                or
+              </Typography>
+              <Divider className={classes.signupDivider} />
+            </div>
+            <Typography variant='body2'>
+              Log in with your email
+            </Typography>
             <TextField
               fullWidth
-              autoFocus
               placeholder='Email'
               className={classes.textField}
             />
@@ -57,12 +91,7 @@ class LoginDialog extends React.PureComponent {
               className={classes.textField}
               type='password'
             />
-            <Button
-              variant='contained'
-              color='primary'
-              className={classes.signupButton}
-              onClick={onClose}
-            >
+            <Button variant='contained' color='primary' className={classes.signupButton}>
               Log in
             </Button>
           </div>

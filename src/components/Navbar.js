@@ -161,9 +161,6 @@ class Navbar extends React.Component {
           <Button className={classes.button} component={Link} to='/arenas'>
             Arenas
           </Button>
-          <Button className={classes.button} component={Link} to='/leaderboard'>
-            Leaderboard
-          </Button>
           {
             isLoggedIn && this.getUserMenu()
           }
