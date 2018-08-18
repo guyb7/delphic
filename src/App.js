@@ -4,6 +4,7 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { withStyles } from '@material-ui/core/styles'
 import Theme from './Theme'
+import 'react-placeholder/lib/reactPlaceholder.css'
 
 import Home from './pages/Home'
 import Arenas from './pages/Arenas'

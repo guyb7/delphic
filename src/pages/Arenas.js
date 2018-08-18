@@ -1,10 +1,13 @@
 import React from 'react'
 import { withStyles } from '@material-ui/core/styles'
+import ReactPlaceholder from 'react-placeholder'
 
 import Paper from '@material-ui/core/Paper'
 
+import API from '../components/API/'
 import ArenasHeader from '../components/Arenas/Header'
-import ArenaItem from '../components/Arenas/ArenaItem'
+import ArenaItem from '../components/Arenas/Item'
+import ArenasPlaceholder from '../components/Arenas/Placeholder'
 
 const styles = theme => {
   return {
@@ -18,40 +21,37 @@ const styles = theme => {
   }
 }
 
-const arenas = [
-  {
-    id: 'nba',
-    title: 'NBA',
-    description: 'All things NBA basketball',
-    imageUrl: '/static/nba.png'
-  }, {
-    id: 'StockMarket',
-    title: 'Stock Market',
-    description: 'Long term, short term, we cover them all',
-    imageUrl: '/static/finance.png'
-  }, {
-    id: 'oscars',
-    title: 'The Oscars',
-    description: 'Predictions for the Oscars, Emmy, and other awards',
-    imageUrl: '/static/oscars.png'
-  }, {
-    id: 'gaming',
-    title: 'Gaming',
-    description: 'eSports predictions',
-    imageUrl: '/static/gaming.png'
+class ArenasPage extends React.PureComponent {
+  constructor (props) {
+    super(props)
+    this.state = {
+      isLoading: true,
+      arenas: []
+    }
   }
-]
 
-class ArenasPage extends React.Component {
+  componentDidMount () {
+    API.get('/arenas')
+      .then(res => {
+        this.setState({ arenas: res.data, isLoading: false })
+      })
+  }
+
   render () {
     const { classes } = this.props
+    const { isLoading, arenas } = this.state
     return (
       <div className={classes.root}>
         <ArenasHeader />
         <Paper className={classes.container} elevation={1}>
-          {
-            arenas.map(t => <ArenaItem key={t.id} {...t} />)
-          }
+          <ReactPlaceholder
+            customPlaceholder={ArenasPlaceholder}
+            ready={!isLoading}
+          >
+            {
+              arenas.map(t => <ArenaItem key={t.id} {...t} />)
+            }
+          </ReactPlaceholder>
         </Paper>
       </div>
     )

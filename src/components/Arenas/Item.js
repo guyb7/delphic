@@ -8,13 +8,6 @@ import Avatar from '@material-ui/core/Avatar'
 const styles = theme => {
   return {
     root: {
-      width: '100%',
-      paddingTop: theme.spacing.double,
-      paddingBottom: theme.spacing.double,
-      display: 'flex',
-      flexDirection: 'column'
-    },
-    arena: {
       display: 'flex',
       justifyContent: 'space-between',
       textDecoration: 'none',
@@ -48,7 +41,7 @@ class ArenaItem extends React.PureComponent {
       description
     } = this.props
     return (
-      <Link className={classes.arena} to={'/a/' + id}>
+      <Link className={classes.root} to={'/a/' + id}>
         <Avatar
           src={imageUrl}
           className={classes.image}
