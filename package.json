@@ -9,7 +9,7 @@
     "eject": "react-scripts eject"
   },
   "dependencies": {
-    "@material-ui/core": "1.4.2",
+    "@material-ui/core": "1.5.0",
     "mdi-material-ui": "^5.2.0",
     "moment": "^2.22.2",
     "numeral": "^2.0.6",
